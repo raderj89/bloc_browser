@@ -113,7 +113,9 @@
     // what's a URL scheme?
     if(!URL.scheme) {
         // The user didn't type http: or https
-        URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", URLString]];
+        NSArray *query = [URLString componentsSeparatedByString:@" "];
+        NSString *queryString = [query componentsJoinedByString:@"+"];
+        URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.google.com/search?q=%@", queryString]];
     }
     
     if (URL) {
